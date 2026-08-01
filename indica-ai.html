@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indica Aí</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="banner">
+    <h1>Indica Aí</h1>
+    <p>Recomendações do time</p>
+  </div>
+</header>
+
+<p class="shared-note">📌 Todo mundo do grupo vê e edita essas indicações — é uma lista compartilhada.</p>
+
+<div class="controls">
+  <div class="search-row">
+    <input type="text" id="searchInput" placeholder="Buscar por nome, serviço ou comentário...">
+    <select id="sortSelect" class="sort-select">
+      <option value="recent">Recentes</option>
+      <option value="rating">Melhor nota</option>
+      <option value="reviews">Mais indicados</option>
+    </select>
+  </div>
+  <div class="chips" id="categoryChips"></div>
+</div>
+
+<main>
+  <div id="loadingState" class="loading">carregando indicações...</div>
+  <div class="grid" id="grid" style="display:none;"></div>
+  <div class="empty-state" id="emptyState" style="display:none;">
+    Nenhuma indicação por aqui ainda.<br>Seja o primeiro a colar uma no mural! 📌
+  </div>
+</main>
+
+<button class="fab" id="openModalBtn">+ Nova indicação</button>
+
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <h2>Colar uma indicação</h2>
+    <form id="entryForm">
+      <div class="field">
+        <label for="catSelect">Categoria</label>
+        <select id="catSelect">
+          <option value="Médicos">Médicos</option>
+          <option value="Dentistas">Dentistas</option>
+          <option value="Reparos residenciais">Reparos residenciais</option>
+          <option value="Serviços automotivos">Serviços automotivos</option>
+          <option value="Restaurantes">Restaurantes</option>
+          <option value="Beleza & Estética">Beleza & Estética</option>
+          <option value="Advogados/Contabilidade">Advogados/Contabilidade</option>
+          <option value="Pets">Pets</option>
+          <option value="Outros">Outros</option>
+          <option value="__custom__">+ Outra categoria...</option>
+        </select>
+      </div>
+      <div class="field" id="customCatField" style="display:none;">
+        <label for="customCat">Nome da categoria</label>
+        <input type="text" id="customCat" placeholder="Ex: Fotógrafos">
+      </div>
+      <div class="field">
+        <label for="nameInput">Nome do profissional / serviço</label>
+        <input type="text" id="nameInput" placeholder="Ex: Dr. Carlos Andrade">
+        <span class="field-error" id="nameError">Preencha o nome, por favor.</span>
+      </div>
+      <div class="field">
+        <label for="locationInput">Onde é atendido / onde chega o produto</label>
+        <input type="text" id="locationInput" placeholder="Ex: Recife - PE">
+        <span class="field-error" id="locationError">Use o formato Cidade - UF (ex: Recife - PE).</span>
+      </div>
+      <div class="field">
+        <label>Sua nota</label>
+        <div class="star-picker" id="starPicker">
+          <span data-val="1">★</span><span data-val="2">★</span><span data-val="3">★</span><span data-val="4">★</span><span data-val="5">★</span>
+        </div>
+        <span class="field-error" id="ratingError">Escolha uma nota de 1 a 5.</span>
+      </div>
+      <div class="field">
+        <label for="commentInput">Comentário (opcional)</label>
+        <textarea id="commentInput" placeholder="Como foi a experiência?"></textarea>
+      </div>
+      <div class="field">
+        <label for="authorInput">Seu nome</label>
+        <input type="text" id="authorInput" placeholder="Ex: Ana">
+        <span class="field-error" id="authorError">Diz aí quem tá indicando :)</span>
+      </div>
+      <div class="modal-buttons">
+        <button type="button" class="btn btn-secondary" id="cancelBtn">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Colar no mural</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+
+<footer>
+  <p><a href="https://www.linkedin.com/in/victorpazbraga/" target="_blank" rel="noopener noreferrer">
+    <img src="assets/linkedin-logo.svg" alt="LinkedIn" width="20" height="20">
+    Victor Paz Braga
+  </a></p>
+  <p>2026 Indica Aí.</p>
+</footer>
+
+</body>
+</html>
